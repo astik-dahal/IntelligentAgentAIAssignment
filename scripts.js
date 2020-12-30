@@ -1,7 +1,7 @@
 
 
 var startBtn = document.querySelector('.start-btn');
-var trafficLightPos = 720;
+var trafficLightPos = document.querySelector(".lights").offsetLeft - 50;
 
 
 startBtn.addEventListener('click', ()=>{
@@ -33,8 +33,12 @@ function startGame(){
         else{
             alertText.textContent = "STOP!"
             redLight.classList.toggle('active')
-            document.querySelector('.cars.active .car-1').style.animationPlayState = "paused";
-            document.querySelector('.cars.active .car-2').style.animationPlayState = "paused";
+            // || parseInt(document.querySelector(".cars.active .car-2").offsetLeft) < trafficLightPos
+            if(parseInt(document.querySelector(".cars.active .car-1").offsetLeft) <= trafficLightPos ){
+                document.querySelector('.cars.active .car-1').style.animationPlayState = "paused";
+                document.querySelector('.cars.active .car-2').style.animationPlayState = "paused";
+            }
+            
 
         }
     }, delayInMilliseconds);
